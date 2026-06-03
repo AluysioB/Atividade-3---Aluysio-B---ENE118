@@ -125,3 +125,46 @@ class ClienteMODBUS:
             endereco,
             novo_valor
         )
+    
+    # -------------------------------------------------------
+    # Últimas Adições, atividade em sala
+    # -------------------------------------------------------
+
+    def ler_coil(self, endereco):
+
+        resposta = self._cliente.read_coils(
+            address=endereco,
+            count=1,
+            slave=1
+        )
+
+        if resposta.isError():
+            return None
+
+        return resposta.bits[0]
+    
+    def ler_discrete_input(self, endereco):
+
+        resposta = self._cliente.read_discrete_inputs(
+            address=endereco,
+            count=1,
+            slave=1
+        )
+
+        if resposta.isError():
+            return None
+
+        return resposta.bits[0]
+    
+    def ler_input_register(self, endereco):
+
+        resposta = self._cliente.read_input_registers(
+            address=endereco,
+            count=1,
+            slave=1
+        )
+
+        if resposta.isError():
+            return None
+
+        return resposta.registers[0]
