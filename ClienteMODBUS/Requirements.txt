@@ -1,3 +1,4 @@
 pymodbustcp==0.1.8
 pymodbustcp ## Funcionou melhor
 pymodbus==2.5.3
+kivy
