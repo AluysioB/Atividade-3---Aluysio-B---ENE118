@@ -1,0 +1,83 @@
+#:kivy 2.3.1
+
+<ModbusWidget>:
+    orientation: 'vertical'
+    padding: 10
+    spacing: 10
+
+    BoxLayout:
+        size_hint_y: None
+        height: 40
+        Label:
+            text: "IP:"
+            size_hint_x: 0.2
+        TextInput:
+            id: txt_ip
+            text: "localhost"
+            multiline: False
+
+    BoxLayout:
+        size_hint_y: None
+        height: 40
+        Label:
+            text: "Porta:"
+            size_hint_x: 0.2
+        TextInput:
+            id: txt_porta
+            text: "502"
+            multiline: False
+
+    Button:
+        id: bt_conectar
+        text: "Conectar"
+        size_hint_y: None
+        height: 50
+        on_release: root.conectar()
+
+    Label:
+        id: lb_status
+        text: "Desconectado"
+
+    BoxLayout:
+        size_hint_y: None
+        height: 40
+        Label:
+            text: "Endereço:"
+            size_hint_x: 0.3
+        TextInput:
+            id: txt_endereco
+            text: "1000"
+            multiline: False
+
+    Label:
+        text: "Tipo de dado"
+
+    Spinner:
+        id: sp_tipo
+        text: "Holding Register"
+        values: ["Holding Register", "Input Register", "Coil", "Discrete Input"]
+        size_hint_y: None
+        height: 50
+
+    BoxLayout:
+        size_hint_y: None
+        height: 50
+        CheckBox:
+            id: cb_continuo
+            size_hint_x: None
+            width: 50
+        Label:
+            text: "Leitura contínua"
+
+    Button:
+        text: "Ler"
+        size_hint_y: None
+        height: 50
+        on_release: root.ler()
+
+    Label:
+        text: "Resultado"
+
+    Label:
+        id: lb_resultado
+        text: "---"

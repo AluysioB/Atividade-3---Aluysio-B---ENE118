@@ -133,9 +133,9 @@ class ClienteMODBUS:
     def ler_coil(self, endereco):
 
         resposta = self._cliente.read_coils(
-            address=endereco,
-            count=1,
-            slave=1
+        address=endereco,
+        count=1,
+        slave=1
         )
 
         if resposta.isError():
@@ -146,9 +146,9 @@ class ClienteMODBUS:
     def ler_discrete_input(self, endereco):
 
         resposta = self._cliente.read_discrete_inputs(
-            address=endereco,
-            count=1,
-            slave=1
+        address=endereco,
+        count=1,
+        slave=1
         )
 
         if resposta.isError():
@@ -159,9 +159,9 @@ class ClienteMODBUS:
     def ler_input_register(self, endereco):
 
         resposta = self._cliente.read_input_registers(
-            address=endereco,
-            count=1,
-            slave=1
+        address=endereco,
+        count=1,
+        slave=1
         )
 
         if resposta.isError():
