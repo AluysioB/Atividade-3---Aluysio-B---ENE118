@@ -2,7 +2,9 @@ from kivy.app import App
 from kivy.uix.boxlayout import BoxLayout
 
 from clientemodbus import ClienteMODBUS
+from kivy.core.window import Window
 
+Window.size = (900, 600)
 
 class ModbusWidget(BoxLayout):
 
@@ -24,10 +26,14 @@ class ModbusWidget(BoxLayout):
         if self._cliente.conectar():
 
             self.ids.lb_status.text = "Conectado"
+            self.ids.lb_status.color = (0, 1, 0, 1)
 
         else:
 
             self.ids.lb_status.text = "Falha na conexão"
+            self.ids.lb_status.color = (1, 0, 0, 1)
+
+
 
     def ler(self):
 
