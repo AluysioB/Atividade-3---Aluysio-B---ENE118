@@ -143,6 +143,16 @@ class ClienteMODBUS:
 
         return resposta.bits[0]
     
+    def escrever_coil(self, endereco, valor):
+
+        resposta = self._cliente.write_coil(
+            address=endereco,
+            value=valor,
+            slave=1
+        )
+
+        return not resposta.isError()
+
     def ler_discrete_input(self, endereco):
 
         resposta = self._cliente.read_discrete_inputs(

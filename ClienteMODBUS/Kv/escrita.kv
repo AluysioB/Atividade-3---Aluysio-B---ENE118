@@ -6,6 +6,7 @@
     BoxLayout:
         orientation: "vertical"
         padding: 20
+        spacing: 15
 
         canvas.before:
             Color:
@@ -15,12 +16,208 @@
                 pos: self.pos
                 size: self.size
 
+        # =================================================
+        # TÍTULO
+        # =================================================
+
         Label:
             text: "Escrita Modbus"
             font_size: 28
             bold: True
             color: 0, 0, 0, 1
+            size_hint_y: None
+            height: 40
 
         Label:
-            text: "Funcionalidade em desenvolvimento."
+            text: "Escreva valores em registradores e bobinas Modbus"
             color: 0, 0, 0, 1
+            size_hint_y: None
+            height: 25
+
+        # =================================================
+        # CONFIGURAÇÃO DA ESCRITA
+        # =================================================
+
+        BoxLayout:
+            orientation: "vertical"
+            size_hint_y: None
+            height: 420
+            spacing: 10
+            padding: 15
+
+            canvas.before:
+                Color:
+                    rgb: 1, 1, 1
+
+                RoundedRectangle:
+                    pos: self.pos
+                    size: self.size
+                    radius: [10]
+
+            # =============================================
+            # TIPO
+            # =============================================
+
+            BoxLayout:
+                size_hint_y: None
+                height: 40
+
+                Label:
+                    text: "Tipo:"
+                    color: 0, 0, 0, 1
+                    size_hint_x: 0.25
+
+                Spinner:
+                    id: sp_tipo_escrita
+                    text: "Holding Register"
+                    values: ["Holding Register", "Float", "Coil", "Bit de Holding"]
+
+                    on_text:
+                        root.atualizar_campos()
+
+            # =============================================
+            # ENDEREÇO
+            # =============================================
+
+            BoxLayout:
+                size_hint_y: None
+                height: 40
+
+                Label:
+                    text: "Endereço:"
+                    color: 0, 0, 0, 1
+                    size_hint_x: 0.25
+
+                TextInput:
+                    id: txt_endereco_escrita
+                    multiline: False
+                    hint_text: "Ex.: 2000"
+
+            # =============================================
+            # VALOR
+            # =============================================
+
+            BoxLayout:
+                id: box_valor
+                size_hint_y: None
+                height: 40
+
+                Label:
+                    id: lbl_valor
+                    text: "Valor:"
+                    color: 0, 0, 0, 1
+                    size_hint_x: 0.25
+
+                TextInput:
+                    id: txt_valor
+                    multiline: False
+                    hint_text: "Digite o valor"
+
+            # =============================================
+            # COIL
+            # =============================================
+
+            BoxLayout:
+                id: box_coil
+                size_hint_y: None
+                height: 40
+
+                opacity: 0
+                disabled: True
+
+                Label:
+                    id: lbl_coil
+                    text: "Estado:"
+                    color: 0, 0, 0, 1
+                    size_hint_x: 0.25
+
+                Spinner:
+                    id: sp_valor_coil
+                    text: "False"
+                    values: ["False", "True"]
+
+            # =============================================
+            # BIT
+            # =============================================
+
+            BoxLayout:
+                id: box_bit
+                size_hint_y: None
+                height: 40
+
+                opacity: 0
+                disabled: True
+
+                Label:
+                    id: lbl_bit
+                    text: "Bit:"
+                    color: 0, 0, 0, 1
+                    size_hint_x: 0.25
+
+                TextInput:
+                    id: txt_bit
+                    multiline: False
+                    hint_text: "0 a 15"
+
+            BoxLayout:
+                id: box_valor_bit
+                size_hint_y: None
+                height: 40
+
+                opacity: 0
+                disabled: True
+
+                Label:
+                    id: lbl_valor_bit
+                    text: "Valor:"
+                    color: 0, 0, 0, 1
+                    size_hint_x: 0.25
+
+                Spinner:
+                    id: sp_valor_bit
+                    text: "0"
+                    values: ["0", "1"]
+
+            Widget:
+
+            Button:
+                text: "Escrever"
+                size_hint_y: None
+                height: 50
+
+                on_release:
+                    root.escrever()
+
+        # =================================================
+        # RESULTADO
+        # =================================================
+
+        BoxLayout:
+            orientation: "vertical"
+            spacing: 10
+            padding: 15
+
+            canvas.before:
+                Color:
+                    rgb: 1, 1, 1
+
+                RoundedRectangle:
+                    pos: self.pos
+                    size: self.size
+                    radius: [10]
+
+            Label:
+                text: "Resultado"
+                font_size: 20
+                bold: True
+                color: 0, 0, 0, 1
+                size_hint_y: None
+                height: 35
+
+            Label:
+                id: lbl_status_escrita
+                text: "---"
+                font_size: 24
+                color: 0, 0, 0, 1
+
+            Widget:
