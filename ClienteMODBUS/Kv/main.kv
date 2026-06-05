@@ -1,0 +1,180 @@
+#:kivy 2.3.1
+
+<ContentManager>:
+
+    DashboardScreen:
+    ConexaoScreen:
+    LeituraScreen:
+    EscritaScreen:
+    GraficosScreen:
+    SobreScreen:
+
+
+<MainScreen>:
+
+    BoxLayout:
+        orientation: "vertical"
+
+        # =================================================
+        # CABEÇALHO
+        # =================================================
+
+        BoxLayout:
+            size_hint_y: None
+            height: 80
+            padding: 10
+            spacing: 10
+
+            canvas.before:
+                Color:
+                    rgb: 0.15, 0.15, 0.15
+
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+
+            Image:
+                source: "assets/logo_ufjf.png"
+                size_hint_x: None
+                width: 70
+
+            BoxLayout:
+                orientation: "vertical"
+
+                Label:
+                    text: "Sistema Supervisório Modbus TCP"
+                    font_size: 22
+                    bold: True
+
+                Label:
+                    text: "Informática Industrial - UFJF"
+                    font_size: 14
+
+            Label:
+                text: "v1.0"
+                size_hint_x: None
+                width: 70
+
+        # =================================================
+        # CORPO
+        # =================================================
+
+        BoxLayout:
+
+            # =============================================
+            # MENU LATERAL
+            # =============================================
+
+            BoxLayout:
+                orientation: "vertical"
+                size_hint_x: None
+                width: 180
+                padding: 10
+                spacing: 5
+
+                canvas.before:
+                    Color:
+                        rgb: 0.20, 0.20, 0.20
+
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
+
+                Label:
+                    text: "MENU"
+                    bold: True
+                    size_hint_y: None
+                    height: 30
+
+                Button:
+                    text: "Dashboard"
+                    size_hint_y: None
+                    height: 35
+                    on_release:
+                        content_manager.current = "dashboard"
+
+                Button:
+                    text: "Conexão"
+                    size_hint_y: None
+                    height: 35
+                    on_release:
+                        content_manager.current = "conexao"
+
+                Button:
+                    text: "Leitura"
+                    size_hint_y: None
+                    height: 35
+                    on_release:
+                        content_manager.current = "leitura"
+
+                Button:
+                    text: "Escrita"
+                    size_hint_y: None
+                    height: 35
+                    on_release:
+                        content_manager.current = "escrita"
+
+                Button:
+                    text: "Gráficos"
+                    size_hint_y: None
+                    height: 35
+                    on_release:
+                        content_manager.current = "graficos"
+
+                Button:
+                    text: "Sobre"
+                    size_hint_y: None
+                    height: 35
+                    on_release:
+                        content_manager.current = "sobre"
+
+                Widget:
+
+                Label:
+                    id: lbl_hora
+                    text: "--:--:--"
+                    size_hint_y: None
+                    height: 25
+                    font_size: 18
+                    bold: True
+
+                Label:
+                    id: lbl_data
+                    text: "--/--/----"
+                    size_hint_y: None
+                    height: 25
+
+            # =============================================
+            # CONTEÚDO CENTRAL
+            # =============================================
+
+            ContentManager:
+                id: content_manager
+
+        # =================================================
+        # RODAPÉ
+        # =================================================
+
+        BoxLayout:
+            size_hint_y: None
+            height: 45
+            padding: 10
+
+            canvas.before:
+                Color:
+                    rgb: 0.15, 0.15, 0.15
+
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+
+            Label:
+                text: "Status:"
+                size_hint_x: None
+                width: 60
+
+            Label:
+                id: lb_status
+                text: "Desconectado"
+                color: (1, 0, 0, 1)
+                bold: True

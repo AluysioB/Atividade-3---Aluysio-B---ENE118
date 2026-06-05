@@ -1,0 +1,26 @@
+#:kivy 2.3.1
+
+<GraficosScreen>:
+    name: "graficos"
+
+    BoxLayout:
+        orientation: "vertical"
+        padding: 20
+
+        canvas.before:
+            Color:
+                rgb: 0.94, 0.94, 0.94
+
+            Rectangle:
+                pos: self.pos
+                size: self.size
+
+        Label:
+            text: "Gráficos"
+            font_size: 28
+            bold: True
+            color: 0, 0, 0, 1
+
+        Label:
+            text: "Funcionalidade em desenvolvimento."
+            color: 0, 0, 0, 1

@@ -1,0 +1,90 @@
+#:kivy 2.3.1
+
+<DashboardScreen>:
+    name: "dashboard"
+
+    BoxLayout:
+        orientation: "vertical"
+        padding: 20
+        spacing: 15
+
+        canvas.before:
+            Color:
+                rgb: 0.92, 0.92, 0.92
+
+            Rectangle:
+                pos: self.pos
+                size: self.size
+
+        Label:
+            text: "Dashboard"
+            font_size: 28
+            bold: True
+            color: 0, 0, 0, 1
+            size_hint_y: None
+            height: 40
+
+        Label:
+            text: "Visão Geral do Sistema Supervisório"
+            font_size: 16
+            color: 0, 0, 0, 1
+            size_hint_y: None
+            height: 30
+
+        Image:
+            source: "assets/modbus_logo.png"
+            size_hint_y: None
+            height: 140
+
+        GridLayout:
+            cols: 2
+            spacing: 10
+            size_hint_y: None
+            height: 180
+
+            Label:
+                text: "Status da Conexão:"
+                color: 0, 0, 0, 1
+
+            Label:
+                id: dash_status
+                text: "---"
+                color: 0, 0, 0, 1
+
+            Label:
+                text: "Servidor:"
+                color: 0, 0, 0, 1
+
+            Label:
+                id: dash_ip
+                text: "---"
+                color: 0, 0, 0, 1
+
+            Label:
+                text: "Porta:"
+                color: 0, 0, 0, 1
+
+            Label:
+                id: dash_porta
+                text: "---"
+                color: 0, 0, 0, 1
+
+            Label:
+                text: "Último Valor:"
+                color: 0, 0, 0, 1
+
+            Label:
+                id: dash_valor
+                text: "---"
+                color: 0, 0, 0, 1
+
+            Label:
+                text: "Última Atualização:"
+                color: 0, 0, 0, 1
+
+            Label:
+                id: dash_atualizacao
+                text: "---"
+                color: 0, 0, 0, 1
+
+        Widget:

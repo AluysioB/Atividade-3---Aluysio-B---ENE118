@@ -1,0 +1,152 @@
+#:kivy 2.3.1
+
+<LeituraScreen>:
+    name: "leitura"
+
+    BoxLayout:
+        orientation: "vertical"
+        padding: 20
+        spacing: 15
+
+        canvas.before:
+            Color:
+                rgb: 0.94, 0.94, 0.94
+
+            Rectangle:
+                pos: self.pos
+                size: self.size
+
+        # =============================================
+        # TÍTULO
+        # =============================================
+
+        Label:
+            text: "Leitura Modbus"
+            font_size: 28
+            bold: True
+            color: 0, 0, 0, 1
+            size_hint_y: None
+            height: 40
+
+        Label:
+            text: "Consulta de dados do servidor Modbus TCP"
+            color: 0, 0, 0, 1
+            size_hint_y: None
+            height: 25
+
+        # =============================================
+        # CONFIGURAÇÃO DA LEITURA
+        # =============================================
+
+        BoxLayout:
+            orientation: "vertical"
+            size_hint_y: None
+            height: 240
+            spacing: 10
+            padding: 15
+
+            canvas.before:
+                Color:
+                    rgb: 1, 1, 1
+
+                RoundedRectangle:
+                    pos: self.pos
+                    size: self.size
+                    radius: [10]
+
+            BoxLayout:
+                size_hint_y: None
+                height: 40
+
+                Label:
+                    text: "Endereço:"
+                    color: 0, 0, 0, 1
+                    size_hint_x: 0.25
+
+                TextInput:
+                    id: txt_endereco
+                    text: "1000"
+                    multiline: False
+
+            BoxLayout:
+                size_hint_y: None
+                height: 40
+
+                Label:
+                    text: "Tipo:"
+                    color: 0, 0, 0, 1
+                    size_hint_x: 0.25
+
+                Spinner:
+                    id: sp_tipo
+
+                    text: "Holding Register"
+
+                    values: ["Holding Register","Input Register","Coil","Discrete Input"]
+
+            Button:
+                text: "Ler"
+                size_hint_y: None
+                height: 50
+
+                on_release:
+                    root.ler()
+
+        # =============================================
+        # RESULTADO
+        # =============================================
+
+        BoxLayout:
+            orientation: "vertical"
+            spacing: 10
+            padding: 15
+
+            canvas.before:
+                Color:
+                    rgb: 1, 1, 1
+
+                RoundedRectangle:
+                    pos: self.pos
+                    size: self.size
+                    radius: [10]
+
+            Label:
+                text: "Resultado"
+                font_size: 20
+                bold: True
+                color: 0, 0, 0, 1
+                size_hint_y: None
+                height: 35
+
+            Label:
+                id: lbl_resultado
+                text: "---"
+                font_size: 36
+                bold: True
+                color: 0.1, 0.2, 0.7, 1
+
+            GridLayout:
+                cols: 2
+                spacing: 5
+                size_hint_y: None
+                height: 80
+
+                Label:
+                    text: "Última Leitura:"
+                    color: 0, 0, 0, 1
+
+                Label:
+                    id: lbl_horario_leitura
+                    text: "---"
+                    color: 0, 0, 0, 1
+
+                Label:
+                    text: "Tipo Selecionado:"
+                    color: 0, 0, 0, 1
+
+                Label:
+                    id: lbl_tipo_lido
+                    text: "---"
+                    color: 0, 0, 0, 1
+
+        Widget:

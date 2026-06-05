@@ -1,0 +1,72 @@
+#:kivy 2.3.1
+
+<SobreScreen>:
+    name: "sobre"
+
+    BoxLayout:
+        orientation: "vertical"
+        padding: 20
+        spacing: 15
+
+        canvas.before:
+            Color:
+                rgb: 0.94, 0.94, 0.94
+
+            Rectangle:
+                pos: self.pos
+                size: self.size
+
+        Label:
+            text: "Sobre o Sistema"
+            font_size: 28
+            bold: True
+            color: 0, 0, 0, 1
+            size_hint_y: None
+            height: 40
+
+        BoxLayout:
+            orientation: "vertical"
+            padding: 20
+            spacing: 10
+
+            canvas.before:
+                Color:
+                    rgb: 1, 1, 1
+
+                RoundedRectangle:
+                    pos: self.pos
+                    size: self.size
+                    radius: [10]
+
+            Image:
+                source: "assets/logo_ufjf.png"
+                size_hint_y: None
+                height: 120
+
+            Label:
+                text: "Sistema Supervisório Modbus TCP"
+                font_size: 24
+                bold: True
+                color: 0, 0, 0, 1
+
+            Label:
+                text: "Disciplina de Informática Industrial"
+                color: 0, 0, 0, 1
+
+            Label:
+                text: "Universidade Federal de Juiz de Fora"
+                color: 0, 0, 0, 1
+
+            Label:
+                text: "Faculdade de Engenharia"
+                color: 0, 0, 0, 1
+
+            Label:
+                text: "Versão 1.0"
+                color: 0, 0, 0, 1
+
+            Label:
+                text: "Cliente Modbus TCP desenvolvido em Python e Kivy."
+                color: 0, 0, 0, 1
+
+            Widget:

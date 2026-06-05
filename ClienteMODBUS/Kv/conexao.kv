@@ -1,0 +1,148 @@
+#:kivy 2.3.1
+
+<ConexaoScreen>:
+    name: "conexao"
+
+    BoxLayout:
+        orientation: "vertical"
+        padding: 20
+        spacing: 15
+
+        canvas.before:
+            Color:
+                rgb: 0.94, 0.94, 0.94
+
+            Rectangle:
+                pos: self.pos
+                size: self.size
+
+        # =============================================
+        # TÍTULO
+        # =============================================
+
+        Label:
+            text: "Configuração de Conexão"
+            font_size: 28
+            bold: True
+            color: 0, 0, 0, 1
+            size_hint_y: None
+            height: 40
+
+        Label:
+            text: "Configure os parâmetros do servidor Modbus TCP."
+            color: 0, 0, 0, 1
+            size_hint_y: None
+            height: 25
+
+        # =============================================
+        # PAINEL DE CONFIGURAÇÃO
+        # =============================================
+
+        BoxLayout:
+            orientation: "vertical"
+            size_hint_y: None
+            height: 220
+            spacing: 10
+            padding: 15
+
+            canvas.before:
+                Color:
+                    rgb: 1, 1, 1
+
+                RoundedRectangle:
+                    pos: self.pos
+                    size: self.size
+                    radius: [10]
+
+            BoxLayout:
+                size_hint_y: None
+                height: 40
+
+                Label:
+                    text: "IP:"
+                    color: 0, 0, 0, 1
+                    size_hint_x: 0.2
+
+                TextInput:
+                    id: txt_ip
+                    text: "localhost"
+                    multiline: False
+
+            BoxLayout:
+                size_hint_y: None
+                height: 40
+
+                Label:
+                    text: "Porta:"
+                    color: 0, 0, 0, 1
+                    size_hint_x: 0.2
+
+                TextInput:
+                    id: txt_porta
+                    text: "502"
+                    multiline: False
+
+            Button:
+                text: "Conectar"
+                size_hint_y: None
+                height: 50
+                on_release:
+                    root.conectar()
+
+            Label:
+                id: lbl_conexao
+                text: "Desconectado"
+                font_size: 18
+                bold: True
+                color: 1, 0, 0, 1
+
+        # =============================================
+        # INFORMAÇÕES DA CONEXÃO
+        # =============================================
+
+        BoxLayout:
+            orientation: "vertical"
+            spacing: 5
+
+            Label:
+                text: "Informações da Sessão"
+                color: 0, 0, 0, 1
+                font_size: 18
+                bold: True
+                size_hint_y: None
+                height: 30
+
+            GridLayout:
+                cols: 2
+                spacing: 5
+                size_hint_y: None
+                height: 120
+
+                Label:
+                    text: "Servidor:"
+                    color: 0, 0, 0, 1
+
+                Label:
+                    id: lbl_ip_conectado
+                    text: "---"
+                    color: 0, 0, 0, 1
+
+                Label:
+                    text: "Porta:"
+                    color: 0, 0, 0, 1
+
+                Label:
+                    id: lbl_porta_conectada
+                    text: "---"
+                    color: 0, 0, 0, 1
+
+                Label:
+                    text: "Estado:"
+                    color: 0, 0, 0, 1
+
+                Label:
+                    id: lbl_estado
+                    text: "---"
+                    color: 0, 0, 0, 1
+
+        Widget:
