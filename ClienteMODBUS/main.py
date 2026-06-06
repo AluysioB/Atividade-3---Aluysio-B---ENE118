@@ -79,11 +79,11 @@ class MeuApp(App):
 
     def build(self):
 
-        # Cliente Modbus compartilhado
         self.cliente_modbus = None
+        self.historico = []
 
         return MainScreen()
-
+    
 # =====================================================
 # EXECUÇÃO
 # =====================================================

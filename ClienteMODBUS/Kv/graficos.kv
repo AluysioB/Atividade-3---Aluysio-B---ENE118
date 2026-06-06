@@ -6,6 +6,7 @@
     BoxLayout:
         orientation: "vertical"
         padding: 20
+        spacing: 15
 
         canvas.before:
             Color:
@@ -16,11 +17,43 @@
                 size: self.size
 
         Label:
-            text: "Gráficos"
+            text: "Gráfico Modbus"
             font_size: 28
             bold: True
-            color: 0, 0, 0, 1
+            color: 0,0,0,1
+            size_hint_y: None
+            height: 40
 
         Label:
-            text: "Funcionalidade em desenvolvimento."
-            color: 0, 0, 0, 1
+            text: "Monitoramento de Holding Register"
+            color: 0,0,0,1
+            size_hint_y: None
+            height: 25
+
+        BoxLayout:
+            size_hint_y: None
+            height: 50
+            spacing: 10
+
+            Label:
+                text: "Endereço:"
+                color: 0,0,0,1
+                size_hint_x: 0.2
+
+            TextInput:
+                id: txt_endereco_grafico
+                text: "1000"
+                multiline: False
+
+            Button:
+                text: "Iniciar"
+                on_release:
+                    root.iniciar()
+
+            Button:
+                text: "Parar"
+                on_release:
+                    root.parar()
+
+        BoxLayout:
+            id: grafico_area
