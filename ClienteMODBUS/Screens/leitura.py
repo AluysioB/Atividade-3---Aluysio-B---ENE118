@@ -1,10 +1,69 @@
 from kivy.uix.screenmanager import Screen
 from kivy.app import App
+from kivy.clock import Clock
 
 from datetime import datetime
 
 
 class LeituraScreen(Screen):
+
+    def __init__(self, **kwargs):
+
+        super().__init__(**kwargs)
+
+        self._evento = None
+
+    # =================================================
+    # COMANDO DO BOTÃO
+    # =================================================
+
+    def comando_leitura(self):
+
+        # -----------------------------
+        # Leitura simples
+        # -----------------------------
+
+        if not self.ids.cb_continuo.active:
+
+            self.ler()
+            return
+
+        # -----------------------------
+        # Iniciar leitura contínua
+        # -----------------------------
+
+        if self._evento is None:
+
+            self._evento = Clock.schedule_interval(
+                self.ler_continua,
+                1.0
+            )
+
+            self.ids.bt_ler.text = "Parar"
+
+        # -----------------------------
+        # Parar leitura contínua
+        # -----------------------------
+
+        else:
+
+            self._evento.cancel()
+
+            self._evento = None
+
+            self.ids.bt_ler.text = "Iniciar"
+
+    # =================================================
+    # LEITURA CONTÍNUA
+    # =================================================
+
+    def ler_continua(self, dt):
+
+        self.ler()
+
+    # =================================================
+    # LEITURA MODBUS
+    # =================================================
 
     def ler(self):
 
@@ -70,3 +129,17 @@ class LeituraScreen(Screen):
         except Exception as e:
 
             self.ids.lbl_resultado.text = f"Erro: {e}"
+
+    # =================================================
+    # AO SAIR DA TELA
+    # =================================================
+
+    def on_leave(self):
+
+        if self._evento is not None:
+
+            self._evento.cancel()
+
+            self._evento = None
+
+            self.ids.bt_ler.text = "Ler"

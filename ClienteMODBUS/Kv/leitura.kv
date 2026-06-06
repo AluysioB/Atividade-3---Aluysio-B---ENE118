@@ -20,28 +20,31 @@
         # TÍTULO
         # =============================================
 
-        Label:
-            text: "Leitura Modbus"
-            font_size: 28
-            bold: True
-            color: 0, 0, 0, 1
+        BoxLayout:
+            orientation: "vertical"
             size_hint_y: None
-            height: 40
+            height: 60
+            spacing: 0
 
-        Label:
-            text: "Consulta de dados do servidor Modbus TCP"
-            color: 0, 0, 0, 1
-            size_hint_y: None
-            height: 25
+            Label:
+                text: "Leitura Modbus"
+                font_size: 28
+                bold: True
+                color: 0, 0, 0, 1
+
+            Label:
+                text: "Consulta de dados do servidor Modbus TCP"
+                color: 0, 0, 0, 1
+                font_size: 14
 
         # =============================================
-        # CONFIGURAÇÃO DA LEITURA
+        # CARD 1 - CONFIGURAÇÃO
         # =============================================
 
         BoxLayout:
             orientation: "vertical"
             size_hint_y: None
-            height: 240
+            height: 230
             spacing: 10
             padding: 15
 
@@ -79,25 +82,42 @@
 
                 Spinner:
                     id: sp_tipo
-
                     text: "Holding Register"
-
                     values: ["Holding Register","Input Register","Coil","Discrete Input"]
 
+            BoxLayout:
+                size_hint_y: None
+                height: 40
+
+                Label:
+                    text: "Contínua:"
+                    color: 0, 0, 0, 1
+                    size_hint_x: 0.25
+
+                CheckBox:
+                    id: cb_continuo
+                    size_hint_x: None
+                    width: 50
+
+                Widget:
+
             Button:
+                id: bt_ler
                 text: "Ler"
                 size_hint_y: None
                 height: 50
 
                 on_release:
-                    root.ler()
+                    root.comando_leitura()
 
         # =============================================
-        # RESULTADO
+        # CARD 2 - RESULTADO
         # =============================================
 
         BoxLayout:
             orientation: "vertical"
+            size_hint_y: None
+            height: 170
             spacing: 10
             padding: 15
 
@@ -121,18 +141,42 @@
             Label:
                 id: lbl_resultado
                 text: "---"
-                font_size: 36
+                font_size: 40
                 bold: True
                 color: 0.1, 0.2, 0.7, 1
 
+        # =============================================
+        # CARD 3 - INFORMAÇÕES
+        # =============================================
+
+        BoxLayout:
+            orientation: "vertical"
+            spacing: 10
+            padding: 15
+
+            canvas.before:
+                Color:
+                    rgb: 1, 1, 1
+
+                RoundedRectangle:
+                    pos: self.pos
+                    size: self.size
+                    radius: [10]
+
+            Label:
+                text: "Informações"
+                font_size: 20
+                bold: True
+                color: 0, 0, 0, 1
+                size_hint_y: None
+                height: 35
+
             GridLayout:
                 cols: 2
-                spacing: 5
-                size_hint_y: None
-                height: 80
+                spacing: 10
 
                 Label:
-                    text: "Última Leitura:"
+                    text: "Última leitura:"
                     color: 0, 0, 0, 1
 
                 Label:
@@ -141,12 +185,10 @@
                     color: 0, 0, 0, 1
 
                 Label:
-                    text: "Tipo Selecionado:"
+                    text: "Tipo selecionado:"
                     color: 0, 0, 0, 1
 
                 Label:
                     id: lbl_tipo_lido
                     text: "---"
                     color: 0, 0, 0, 1
-
-        Widget:
