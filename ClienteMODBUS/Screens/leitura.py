@@ -110,13 +110,6 @@ class LeituraScreen(Screen):
 
             self.ids.lbl_resultado.text = str(valor)
 
-            if valor is not None:
-
-                app.historico.append(valor)
-
-                if len(self.historico) > 500:
-                    self.historico.pop(0)
-
             self.ids.lbl_tipo_lido.text = tipo
 
             horario = datetime.now().strftime(
