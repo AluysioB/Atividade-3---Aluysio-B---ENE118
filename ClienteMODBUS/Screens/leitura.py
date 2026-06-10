@@ -108,6 +108,12 @@ class LeituraScreen(Screen):
                     endereco
                 )
 
+            elif tipo == "Float":
+
+                valor = app.cliente_modbus.ler_float(
+                    endereco
+                )
+
             self.ids.lbl_resultado.text = str(valor)
 
             self.ids.lbl_tipo_lido.text = tipo

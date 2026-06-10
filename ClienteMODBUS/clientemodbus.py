@@ -58,6 +58,7 @@ class ClienteMODBUS:
     # FLOAT
     # ==========================================================
 
+    '''
     def escrever_float(self, endereco, valor_float):
 
 
@@ -88,7 +89,51 @@ class ClienteMODBUS:
         )
 
         return valor
+    '''
 
+    def escrever_float(self, endereco, valor_float):
+
+        builder = BinaryPayloadBuilder(
+            byteorder=Endian.Big,
+            wordorder=Endian.Big
+        )
+
+        builder.add_32bit_float(
+            valor_float
+        )
+
+        registradores = builder.to_registers()
+
+        resposta = self._cliente.write_registers(
+            address=endereco,
+            values=registradores,
+            slave=1
+        )
+
+        return not resposta.isError()
+
+    def ler_float(self, endereco):
+
+        resposta = self._cliente.read_holding_registers(
+            address=endereco,
+            count=2,
+            slave=1
+        )
+
+        if resposta.isError():
+
+            return None
+
+        decoder = BinaryPayloadDecoder.fromRegisters(
+            resposta.registers,
+            byteorder=Endian.Big,
+            wordorder=Endian.Big
+        )
+
+        valor = decoder.decode_32bit_float()
+
+        return round(valor, 3)
+    
     # ==========================================================
     # BITS
     # ==========================================================
