@@ -1,0 +1,242 @@
+#:kivy 2.3.1
+
+<EscritaScreen>:
+    name: "escrita"
+
+    BoxLayout:
+        orientation: "vertical"
+        padding: 20
+        spacing: 15
+
+        canvas.before:
+            Color:
+                rgb: 0.94, 0.94, 0.94
+
+            Rectangle:
+                pos: self.pos
+                size: self.size
+
+        # =================================================
+        # TÍTULO
+        # =================================================
+
+        BoxLayout:
+            orientation: "vertical"
+            size_hint_y: None
+            height: 70
+            spacing: 5
+
+            MDLabel:
+                text: "Escrita Modbus"
+                font_style: "H4"
+                halign: "left"
+
+            MDLabel:
+                text: "Escreva valores em registradores e bobinas Modbus"
+                halign: "left"
+
+        # =================================================
+        # CONFIGURAÇÃO DA ESCRITA
+        # =================================================
+
+        MDCard:
+            orientation: "vertical"
+
+            size_hint_y: None
+            height: 500
+
+            padding: 15
+            spacing: 12
+
+            radius: [10, 10, 10, 10]
+            elevation: 2
+
+            MDLabel:
+                text: "Configuração"
+                font_style: "H6"
+
+                size_hint_y: None
+                height: 30
+
+            # =============================================
+            # TIPO
+            # =============================================
+
+            BoxLayout:
+                size_hint_y: None
+                height: 50
+
+                MDLabel:
+                    text: "Tipo:"
+                    size_hint_x: 0.25
+
+                Spinner:
+                    id: sp_tipo_escrita
+
+                    text: "Holding Register"
+
+                    values: ["Holding Register","Float","Coil","Bit de Holding"]
+
+                    on_text:
+                        root.atualizar_campos()
+
+            # =============================================
+            # ENDEREÇO
+            # =============================================
+
+            BoxLayout:
+                size_hint_y: None
+                height: 50
+
+                MDLabel:
+                    text: "Endereço:"
+                    size_hint_x: 0.25
+
+                MDTextField:
+                    id: txt_endereco_escrita
+
+                    hint_text: "Ex.: 2000"
+
+                    mode: "rectangle"
+
+            # =============================================
+            # VALOR
+            # =============================================
+
+            BoxLayout:
+                id: box_valor
+
+                size_hint_y: None
+                height: 50
+
+                MDLabel:
+                    id: lbl_valor
+
+                    text: "Valor:"
+                    size_hint_x: 0.25
+
+                MDTextField:
+                    id: txt_valor
+
+                    hint_text: "Digite o valor"
+
+                    mode: "rectangle"
+
+            # =============================================
+            # COIL
+            # =============================================
+
+            BoxLayout:
+                id: box_coil
+
+                size_hint_y: None
+                height: 50
+
+                opacity: 0
+                disabled: True
+
+                MDLabel:
+                    id: lbl_coil
+
+                    text: "Estado:"
+                    size_hint_x: 0.25
+
+                Spinner:
+                    id: sp_valor_coil
+
+                    text: "False"
+
+                    values: ["False","True"]
+
+            # =============================================
+            # BIT
+            # =============================================
+
+            BoxLayout:
+                id: box_bit
+
+                size_hint_y: None
+                height: 50
+
+                opacity: 0
+                disabled: True
+
+                MDLabel:
+                    id: lbl_bit
+
+                    text: "Bit:"
+                    size_hint_x: 0.25
+
+                MDTextField:
+                    id: txt_bit
+
+                    hint_text: "0 a 15"
+
+                    mode: "rectangle"
+
+            BoxLayout:
+                id: box_valor_bit
+
+                size_hint_y: None
+                height: 50
+
+                opacity: 0
+                disabled: True
+
+                MDLabel:
+                    id: lbl_valor_bit
+
+                    text: "Valor:"
+                    size_hint_x: 0.25
+
+                Spinner:
+                    id: sp_valor_bit
+
+                    text: "0"
+
+                    values: ["0","1"]
+
+            Widget:
+
+            AnchorLayout:
+                anchor_x: "center"
+
+                MDRaisedButton:
+                    text: "Escrever"
+
+                    on_release:
+                        root.escrever()
+
+        # =================================================
+        # RESULTADO
+        # =================================================
+
+        MDCard:
+            orientation: "vertical"
+
+            padding: 15
+            spacing: 10
+
+            radius: [10, 10, 10, 10]
+            elevation: 2
+
+            MDLabel:
+                text: "Resultado"
+
+                font_style: "H6"
+
+                size_hint_y: None
+                height: 30
+
+            MDLabel:
+                id: lbl_status_escrita
+
+                text: "---"
+
+                halign: "center"
+
+                theme_text_color: "Primary"
+
+                font_style: "H5"
+
+            Widget:

@@ -1,0 +1,184 @@
+#:kivy 2.3.1
+
+<LeituraScreen>:
+    name: "leitura"
+
+    BoxLayout:
+        orientation: "vertical"
+        padding: 20
+        spacing: 15
+
+        canvas.before:
+            Color:
+                rgb: 0.94, 0.94, 0.94
+
+            Rectangle:
+                pos: self.pos
+                size: self.size
+
+        # =============================================
+        # TÍTULO
+        # =============================================
+
+        BoxLayout:
+            orientation: "vertical"
+            size_hint_y: None
+            height: 70
+            spacing: 5
+
+            MDLabel:
+                text: "Leitura Modbus"
+                font_style: "H4"
+                halign: "left"
+
+            MDLabel:
+                text: "Consulta de dados do servidor Modbus TCP"
+                halign: "left"
+
+        # =============================================
+        # CARD 1 - CONFIGURAÇÃO
+        # =============================================
+
+        MDCard:
+            orientation: "vertical"
+            size_hint_y: None
+            height: 280
+
+            padding: 15
+            spacing: 12
+
+            radius: [10, 10, 10, 10]
+            elevation: 2
+
+            MDLabel:
+                text: "Configuração"
+                font_style: "H6"
+                size_hint_y: None
+                height: 30
+
+            BoxLayout:
+                size_hint_y: None
+                height: 50
+
+                MDLabel:
+                    text: "Endereço:"
+                    size_hint_x: 0.25
+
+                MDTextField:
+                    id: txt_endereco
+                    text: "1000"
+                    mode: "rectangle"
+
+            BoxLayout:
+                size_hint_y: None
+                height: 50
+
+                MDLabel:
+                    text: "Tipo:"
+                    size_hint_x: 0.25
+
+                Spinner:
+                    id: sp_tipo
+
+                    text: "Holding Register"
+
+                    values: ["Holding Register","Input Register","Float","Coil","Discrete Input"]
+
+            BoxLayout:
+                size_hint_y: None
+                height: 40
+
+                MDLabel:
+                    text: "Contínua:"
+                    size_hint_x: 0.25
+
+                CheckBox:
+                    id: cb_continuo
+                    size_hint_x: None
+                    width: 50
+
+                Widget:
+
+            AnchorLayout:
+                anchor_x: "center"
+
+                MDRaisedButton:
+                    id: bt_ler
+
+                    text: "Ler"
+
+                    on_release:
+                        root.comando_leitura()
+
+        # =============================================
+        # CARD 2 - RESULTADO
+        # =============================================
+
+        MDCard:
+            orientation: "vertical"
+
+            size_hint_y: None
+            height: 180
+
+            padding: 15
+            spacing: 10
+
+            radius: [10, 10, 10, 10]
+            elevation: 2
+
+            MDLabel:
+                text: "Resultado"
+                font_style: "H6"
+
+                size_hint_y: None
+                height: 30
+
+            MDLabel:
+                id: lbl_resultado
+
+                text: "---"
+
+                halign: "center"
+
+                theme_text_color: "Custom"
+                text_color: 0.1, 0.2, 0.7, 1
+
+                font_style: "H3"
+
+        # =============================================
+        # CARD 3 - INFORMAÇÕES
+        # =============================================
+
+        MDCard:
+            orientation: "vertical"
+
+            padding: 15
+            spacing: 10
+
+            radius: [10, 10, 10, 10]
+            elevation: 2
+
+            MDLabel:
+                text: "Informações"
+                font_style: "H6"
+
+                size_hint_y: None
+                height: 30
+
+            GridLayout:
+                cols: 2
+                spacing: 10
+
+                MDLabel:
+                    text: "Última leitura:"
+
+                MDLabel:
+                    id: lbl_horario_leitura
+                    text: "---"
+
+                MDLabel:
+                    text: "Tipo selecionado:"
+
+                MDLabel:
+                    id: lbl_tipo_lido
+                    text: "---"

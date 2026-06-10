@@ -1,0 +1,136 @@
+#:kivy 2.3.1
+
+<ConexaoScreen>:
+    name: "conexao"
+
+    BoxLayout:
+        orientation: "vertical"
+        padding: 20
+        spacing: 15
+
+        canvas.before:
+            Color:
+                rgb: 0.94, 0.94, 0.94
+
+            Rectangle:
+                pos: self.pos
+                size: self.size
+
+        # =============================================
+        # TÍTULO
+        # =============================================
+
+        MDLabel:
+            text: "Configuração de Conexão"
+            font_style: "H4"
+            halign: "left"
+            theme_text_color: "Primary"
+            size_hint_y: None
+            height: 40
+
+        MDLabel:
+            text: "Configure os parâmetros do servidor Modbus TCP."
+            halign: "left"
+            size_hint_y: None
+            height: 25
+
+        # =============================================
+        # PAINEL DE CONFIGURAÇÃO
+        # =============================================
+
+        MDCard:
+            orientation: "vertical"
+            size_hint_y: None
+            height: 240
+            padding: 15
+            spacing: 10
+            radius: [10, 10, 10, 10]
+            elevation: 2
+
+            BoxLayout:
+                size_hint_y: None
+                height: 50
+
+                MDLabel:
+                    text: "IP:"
+                    size_hint_x: 0.2
+
+                MDTextField:
+                    id: txt_ip
+                    text: "localhost"
+                    mode: "rectangle"
+
+            BoxLayout:
+                size_hint_y: None
+                height: 50
+
+                MDLabel:
+                    text: "Porta:"
+                    size_hint_x: 0.2
+
+                MDTextField:
+                    id: txt_porta
+                    text: "502"
+                    mode: "rectangle"
+
+            MDRaisedButton:
+                text: "Conectar"
+                size_hint_y: None
+                height: 50
+
+                on_release:
+                    root.conectar()
+
+            MDLabel:
+                id: lbl_conexao
+                text: "Desconectado"
+                halign: "center"
+                theme_text_color: "Custom"
+                text_color: 1, 0, 0, 1
+
+        # =============================================
+        # INFORMAÇÕES DA CONEXÃO
+        # =============================================
+
+        MDCard:
+            orientation: "vertical"
+            padding: 15
+            spacing: 10
+
+            radius: [10, 10, 10, 10]
+            elevation: 2
+
+            MDLabel:
+                text: "Informações da Sessão"
+                font_style: "H6"
+                size_hint_y: None
+                height: 30
+
+            GridLayout:
+                cols: 2
+                spacing: 5
+                size_hint_y: None
+                height: 120
+
+                MDLabel:
+                    text: "Servidor:"
+
+                MDLabel:
+                    id: lbl_ip_conectado
+                    text: "---"
+
+                MDLabel:
+                    text: "Porta:"
+
+                MDLabel:
+                    id: lbl_porta_conectada
+                    text: "---"
+
+                MDLabel:
+                    text: "Estado:"
+
+                MDLabel:
+                    id: lbl_estado
+                    text: "---"
+
+        Widget:

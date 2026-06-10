@@ -1,0 +1,114 @@
+#:kivy 2.3.1
+
+<GraficosScreen>:
+    name: "graficos"
+
+    BoxLayout:
+        orientation: "vertical"
+        padding: 20
+        spacing: 15
+
+        canvas.before:
+            Color:
+                rgb: 0.94, 0.94, 0.94
+
+            Rectangle:
+                pos: self.pos
+                size: self.size
+
+        # =============================================
+        # TÍTULO
+        # =============================================
+
+        BoxLayout:
+            orientation: "vertical"
+            size_hint_y: None
+            height: 70
+            spacing: 5
+
+            MDLabel:
+                text: "Gráfico Modbus"
+                font_style: "H4"
+                halign: "left"
+
+            MDLabel:
+                text: "Monitoramento de Holding Register"
+                halign: "left"
+
+        # =============================================
+        # CONFIGURAÇÃO
+        # =============================================
+
+        MDCard:
+            orientation: "vertical"
+
+            size_hint_y: None
+            height: 140
+
+            padding: 15
+            spacing: 10
+
+            radius: [10, 10, 10, 10]
+            elevation: 2
+
+            MDLabel:
+                text: "Configuração"
+                font_style: "H6"
+
+                size_hint_y: None
+                height: 30
+
+            BoxLayout:
+                size_hint_y: None
+                height: 50
+                spacing: 10
+
+                MDLabel:
+                    text: "Endereço:"
+                    size_hint_x: 0.20
+
+                MDTextField:
+                    id: txt_endereco_grafico
+
+                    text: "1000"
+
+                    mode: "rectangle"
+
+            BoxLayout:
+                size_hint_y: None
+                height: 50
+                spacing: 10
+
+                MDRaisedButton:
+                    text: "Iniciar"
+
+                    on_release:
+                        root.iniciar()
+
+                MDRaisedButton:
+                    text: "Parar"
+
+                    on_release:
+                        root.parar()
+
+        # =============================================
+        # ÁREA DO GRÁFICO
+        # =============================================
+
+        MDCard:
+            orientation: "vertical"
+
+            padding: 10
+
+            radius: [10, 10, 10, 10]
+            elevation: 2
+
+            MDLabel:
+                text: "Visualização"
+                font_style: "H6"
+
+                size_hint_y: None
+                height: 30
+
+            BoxLayout:
+                id: grafico_area

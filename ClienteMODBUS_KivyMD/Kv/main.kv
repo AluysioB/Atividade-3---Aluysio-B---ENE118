@@ -1,0 +1,190 @@
+#:kivy 2.3.1
+
+<ContentManager>:
+
+    DashboardScreen:
+    ConexaoScreen:
+    LeituraScreen:
+    EscritaScreen:
+    GraficosScreen:
+    SobreScreen:
+
+
+<MainScreen>:
+
+    BoxLayout:
+        orientation: "vertical"
+
+        # =================================================
+        # CABEÇALHO
+        # =================================================
+
+        BoxLayout:
+            size_hint_y: None
+            height: 80
+            padding: 10
+            spacing: 10
+
+            canvas.before:
+                Color:
+                    rgb: 0.15, 0.15, 0.15
+
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+
+            Image:
+                source: "assets/logo_ufjf.png"
+                size_hint_x: None
+                width: 70
+
+            BoxLayout:
+                orientation: "vertical"
+
+                MDLabel:
+                    text: "Sistema Supervisório Modbus TCP"
+                    halign: "left"
+                    theme_text_color: "Custom"
+                    text_color: 1, 1, 1, 1
+                    font_style: "H6"
+
+                MDLabel:
+                    text: "Informática Industrial - UFJF"
+                    halign: "left"
+                    theme_text_color: "Custom"
+                    text_color: 1, 1, 1, 1
+
+            MDLabel:
+                text: "v1.0"
+                halign: "center"
+                theme_text_color: "Custom"
+                text_color: 1, 1, 1, 1
+                size_hint_x: None
+                width: 70
+
+        # =================================================
+        # CORPO
+        # =================================================
+
+        BoxLayout:
+
+            # =============================================
+            # MENU LATERAL
+            # =============================================
+
+            MDCard:
+                orientation: "vertical"
+
+                size_hint_x: None
+                width: 200
+
+                padding: 10
+                spacing: 8
+
+                radius: [0, 0, 0, 0]
+
+                md_bg_color: 0.20, 0.20, 0.20, 1
+
+                MDLabel:
+                    text: "MENU"
+                    halign: "center"
+                    theme_text_color: "Custom"
+                    text_color: 1, 1, 1, 1
+
+                MDRaisedButton:
+                    text: "Dashboard"
+
+                    on_release:
+                        content_manager.current = "dashboard"
+
+                MDRaisedButton:
+                    text: "Conexão"
+
+                    on_release:
+                        content_manager.current = "conexao"
+
+                MDRaisedButton:
+                    text: "Leitura"
+
+                    on_release:
+                        content_manager.current = "leitura"
+
+                MDRaisedButton:
+                    text: "Escrita"
+
+                    on_release:
+                        content_manager.current = "escrita"
+
+                MDRaisedButton:
+                    text: "Gráficos"
+
+                    on_release:
+                        content_manager.current = "graficos"
+
+                MDRaisedButton:
+                    text: "Sobre"
+
+                    on_release:
+                        content_manager.current = "sobre"
+
+                Widget:
+
+                MDLabel:
+                    id: lbl_hora
+
+                    text: "--:--:--"
+
+                    halign: "center"
+
+                    theme_text_color: "Custom"
+                    text_color: 1, 1, 1, 1
+
+                MDLabel:
+                    id: lbl_data
+
+                    text: "--/--/----"
+
+                    halign: "center"
+
+                    theme_text_color: "Custom"
+                    text_color: 1, 1, 1, 1
+
+            # =============================================
+            # CONTEÚDO CENTRAL
+            # =============================================
+
+            ContentManager:
+                id: content_manager
+
+        # =================================================
+        # RODAPÉ
+        # =================================================
+
+        BoxLayout:
+            size_hint_y: None
+            height: 45
+            padding: 10
+
+            canvas.before:
+                Color:
+                    rgb: 0.15, 0.15, 0.15
+
+                Rectangle:
+                    pos: self.pos
+                    size: self.size
+
+            MDLabel:
+                text: "Status:"
+                size_hint_x: None
+                width: 60
+
+                theme_text_color: "Custom"
+                text_color: 1, 1, 1, 1
+
+            MDLabel:
+                id: lb_status
+
+                text: "Desconectado"
+
+                theme_text_color: "Custom"
+                text_color: 1, 0, 0, 1

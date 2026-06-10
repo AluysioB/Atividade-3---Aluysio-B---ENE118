@@ -1,0 +1,137 @@
+#:kivy 2.3.1
+
+<DashboardScreen>:
+    name: "dashboard"
+
+    BoxLayout:
+        orientation: "vertical"
+        padding: 20
+        spacing: 15
+
+        canvas.before:
+            Color:
+                rgb: 0.92, 0.92, 0.92
+
+            Rectangle:
+                pos: self.pos
+                size: self.size
+
+        # =============================================
+        # TÍTULO
+        # =============================================
+
+        BoxLayout:
+            orientation: "vertical"
+            size_hint_y: None
+            height: 70
+            spacing: 5
+
+            MDLabel:
+                text: "Dashboard"
+                font_style: "H4"
+                halign: "left"
+
+            MDLabel:
+                text: "Visão Geral do Sistema Supervisório"
+                halign: "left"
+
+        # =============================================
+        # LOGO
+        # =============================================
+
+        Image:
+            source: "assets/modbus_logo.png"
+            size_hint_y: None
+            height: 140
+
+        # =============================================
+        # CARD PRINCIPAL
+        # =============================================
+
+        MDCard:
+            orientation: "vertical"
+
+            padding: 15
+            spacing: 10
+
+            radius: [10, 10, 10, 10]
+            elevation: 2
+
+            MDLabel:
+                text: "Informações da Conexão"
+                font_style: "H6"
+
+                size_hint_y: None
+                height: 30
+
+            GridLayout:
+                cols: 2
+                spacing: 10
+
+                MDLabel:
+                    text: "Status da Conexão:"
+
+                MDLabel:
+                    id: dash_status
+                    text: "---"
+
+                MDLabel:
+                    text: "Servidor:"
+
+                MDLabel:
+                    id: dash_ip
+                    text: "---"
+
+                MDLabel:
+                    text: "Porta:"
+
+                MDLabel:
+                    id: dash_porta
+                    text: "---"
+
+                MDLabel:
+                    text: "Último Valor:"
+
+                MDLabel:
+                    id: dash_valor
+                    text: "---"
+
+                MDLabel:
+                    text: "Última Atualização:"
+
+                MDLabel:
+                    id: dash_atualizacao
+                    text: "---"
+
+        # =============================================
+        # CARD STATUS
+        # =============================================
+
+        MDCard:
+            orientation: "vertical"
+
+            size_hint_y: None
+            height: 120
+
+            padding: 15
+            spacing: 10
+
+            radius: [10, 10, 10, 10]
+            elevation: 2
+
+            MDLabel:
+                text: "Estado Atual"
+                font_style: "H6"
+
+            MDLabel:
+                id: dash_status_grande
+
+                text: "Aguardando conexão"
+
+                halign: "center"
+
+                theme_text_color: "Primary"
+
+                font_style: "H5"
+
+        Widget:

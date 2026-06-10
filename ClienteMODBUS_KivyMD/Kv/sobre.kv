@@ -1,0 +1,78 @@
+#:kivy 2.3.1
+
+<SobreScreen>:
+    name: "sobre"
+
+    BoxLayout:
+        orientation: "vertical"
+        padding: 20
+        spacing: 15
+
+        canvas.before:
+            Color:
+                rgb: 0.94, 0.94, 0.94
+
+            Rectangle:
+                pos: self.pos
+                size: self.size
+
+        # =============================================
+        # TÍTULO
+        # =============================================
+
+        BoxLayout:
+            orientation: "vertical"
+            size_hint_y: None
+            height: 60
+
+            MDLabel:
+                text: "Sobre o Sistema"
+                font_style: "H4"
+                halign: "left"
+
+        # =============================================
+        # CARD PRINCIPAL
+        # =============================================
+
+        MDCard:
+            orientation: "vertical"
+
+            padding: 20
+            spacing: 10
+
+            radius: [10, 10, 10, 10]
+            elevation: 2
+
+            Image:
+                source: "assets/logo_ufjf.png"
+                size_hint_y: None
+                height: 120
+
+            MDLabel:
+                text: "Sistema Supervisório Modbus TCP"
+
+                halign: "center"
+
+                font_style: "H5"
+
+            MDLabel:
+                text: "Disciplina de Informática Industrial"
+                halign: "center"
+
+            MDLabel:
+                text: "Universidade Federal de Juiz de Fora"
+                halign: "center"
+
+            MDLabel:
+                text: "Faculdade de Engenharia"
+                halign: "center"
+
+            MDLabel:
+                text: "Versão 1.0"
+                halign: "center"
+
+            MDLabel:
+                text: "Cliente Modbus TCP desenvolvido em Python e KivyMD."
+                halign: "center"
+
+            Widget:
